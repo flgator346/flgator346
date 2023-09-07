@@ -2,7 +2,8 @@
 - hosts: all
 
   become: true
-  become_user: moconnor
+  remote_user: moconnor
+  become_user: root
   become_method: sudo
   tasks:
     - name: update apt packages
