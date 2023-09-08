@@ -1,10 +1,21 @@
+---
+- hosts: all
 
+  become: true
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: Download Docker
+      ansible.builtin.get_url:
+        url: https://get.docker.com
+        dest: /tmp/dockerinstall.sh
 
-- name: Download Docker
-  ansible.builtin.get_url:
-    url: https://get.docker.com
-    dest: /tmp/dockerinstall.sh
+    - name: Install Docker
+      ansible.builtin.shell:
+      cmd: cat /tmp/dockerinstall.sh | sh -s -- -y
 
-- name: Install Docker
-  ansible.builtin.shell:
-    cmd: cat /tmp/dockerinstall.sh | sh -s -- -y
+    - name: Add moconnor to docker group
+      user:
+        name: moconnor
+        groups: docker
+        append: yes
