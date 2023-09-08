@@ -12,7 +12,7 @@
 
     - name: Install Docker
       ansible.builtin.shell:
-      cmd: cat /tmp/dockerinstall.sh | sh -s -- -y
+        cmd: cat /tmp/dockerinstall.sh | sh -s -- -y
 
     - name: Add moconnor to docker group
       user:
