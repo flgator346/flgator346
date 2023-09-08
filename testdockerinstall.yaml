@@ -1,0 +1,10 @@
+
+
+- name: Download Docker
+  ansible.builtin.get_url:
+    url: https://get.docker.com
+    dest: /tmp/dockerinstall.sh
+
+- name: Install Docker
+  ansible.builtin.shell:
+    cmd: cat /tmp/dockerinstall.sh | sh -s -- -y
